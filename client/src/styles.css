@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+
+/**theme**/
+body{
+    background-color: #f5f8fa !important;
+}
+.btn-default{    color: white;
+    background-color: #3097D1;
+    background-image: none; border:1px solid #3097D1 !important}
+.mbottom1rem{margin-bottom:1rem}
+.bg{background-color:#3097D1 !important}
+.bg a.nav-link{color:white !important}
+.login-box, .register-box{width:50%; margin: 50px auto 0;}
+.post-holder{    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    padding: 1.5rem !important;
+}
+.toph{height:30px;}
+.lead{font-size: 22px}
+
+
+.air-card{
+    background: white;
+    padding-bottom: 55px;
+    padding-top: 30px;
+    border:1px solid  #3097D1
+}

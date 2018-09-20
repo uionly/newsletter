@@ -1,0 +1,129 @@
+
+
+
+<!-- <button (click)="createPdf()">Generate JSPDF </button>
+<button (click)="generatePdf()"> Generate PDF</button> -->
+<div id="GenPDF" >
+    <div  class="container-fluid" #test>
+    
+       <div class="row">
+         <div class="wrapper">
+
+            <div class="header"  [ngStyle]="{'background-image': 'url(' + finalObj.headerBanner + ')'}">
+                <div class="row ">
+                    <div class="col-md-4" ><img class="logo" src="{{finalObj.headerLogo}}"/></div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4 edition" ><h4> Edition : {{finalObj.edition +'   |  ' + finalObj.date}}  </h4></div>
+                </div>
+                <div class="row " style="margin-top:86px;">
+          
+                    <div class="col-md-8">
+                        <span class="hfont"> {{finalObj.headerTitle}}</span>
+                    </div>
+                  </div>
+                </div>
+                    <!-- section example   -->
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="heading">
+                      <h2><span>Industry Watch</span></h2>
+                    </div>
+              </div>
+          </div>
+          <!-- section End -->
+            <div class="row"  *ngFor="let section of finalObj.IndustryWatch">
+              <div class="inner_wrapper">
+                  <div class="col-md-12 sectiondivider">
+                      <h3>{{section.title}}</h3>
+                  </div>
+                  <div class="col-md-12">
+                      <img id="sec_img" class="img-responsive" [src]="section.Img"  />
+                    </div>
+                    <div class="col-md-12">
+                      <p >{{section.desc}}</p>
+                    </div>
+                      <div class="col-md-12">
+                        <a id="btn" href="{{section.link}}">WATCH ONLINE <span class="glyphicon glyphicon-arrow-right"></span></a>
+                  </div>
+              </div>
+    
+            </div>
+    
+                      <!--  highlight -->
+                      <div class="row">
+                          <div class="col-md-12">
+                              <div class="heading">
+                                  <h2><span>Highlights</span></h2>
+                                </div>
+                            </div>
+                      </div>
+                        <div class="row"  >
+                            <div class="inner_wrapper row">
+                                <div class="col-md-6" *ngFor="let highlight of finalObj.Highlights" >
+                                    <img id="himages" class="img-responsive" [src]="highlight.Img" style="width:100%" />
+                                    <p>{{highlight.desc}}</p>
+                                  </div>
+                              </div>
+    
+                        </div>
+    
+                               <!-- highlight End -->
+    
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading">
+                        <h2><span>Upcoming Events</span></h2>
+                      </div>
+                </div>
+              </div>
+              <div  *ngFor="let event of finalObj.UpcomingEvents" >
+                <div class="row">
+                    <div class="inner_wrapper">
+                        <div class="col-md-12"  >
+                            <div class="eheading col-md-6">
+                              <h3> {{event.title}}</h3>
+                            </div>
+                            <div class="rcontnet col-md-4">
+                              <ul>
+                                <li class="edate">
+                                  {{event.date}}
+                                </li>
+                                <li class="evenue">
+                                  {{event.venue}}
+                                </li>
+                              </ul>
+            
+                          </div>
+                        </div>
+                        <div class="col-md-12"  >
+                            <img id="sec_img" class="img-responsive" [src]="event.Img"  />
+                          </div>
+                          <div class="col-md-12">
+                              <p>{{event.desc}}</p>
+                            </div>
+                            <div class="col-md-12"   >
+                                <br>
+                                <a id="btn" class="eventbtn" href="{{event.link}}">Watch Online <span class="glyphicon glyphicon-arrow-right"></span></a>
+                              </div>
+                              <br/>
+                      </div>
+    
+              </div>
+      
+      
+              </div>
+              <div class="">
+                      <div  class="col-md-12 footer" >
+                          <p class="footertext">{{finalObj.footer}}</p>
+                         </div>
+    
+              <!-- footer end -->
+            </div>
+         </div>
+    
+        </div>
+    
+    
+    </div>
+    </div>
+    

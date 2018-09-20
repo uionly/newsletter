@@ -1,0 +1,123 @@
+.vl {
+    border-left: 6px solid green;
+    height: 20px;
+}
+.container{
+
+    margin:0px auto;
+    border:1px solid #d6d9db;
+    page-break-inside: avoid
+
+}
+.wrapper{
+    width:1200px;
+    margin:auto;
+     background: white;
+}
+.inner_wrapper{
+    width:90%; margin: auto;
+}
+.header{
+   /* background-image:url('/assets/background/back.jpg') ;*/
+    background-size: cover;
+    padding-left:20px;
+    height: 462px;
+    padding-top: 34px !important;
+
+}
+.header .edition{
+  text-align: right;
+  padding-top:20px;
+  padding-right: 59px;
+  padding-left: 59px;
+}
+.hfont{
+    font-size: 6.5em;
+	font-family: 'Poppins', sans-serif;
+
+
+    font-size: 110px;
+    color: white;
+    font-weight: bold;
+    line-height: 105px;
+    background: -webkit-linear-gradient(#b439fd, #4c2bd9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    /*
+    background: -webkit-linear-gradient(#eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    */
+    padding-top:20px !important;
+}
+.logo{
+    height: 100px;
+    padding-left:20px;
+}
+
+p{
+    font-size: 21px;
+}
+.container{
+    background-color:white;
+}
+.heading{
+	text-align:center;
+	clear:both;
+	padding:15px;
+}
+h2 { width:100%; text-align:center; border-bottom: 1px solid #9b9c9e; line-height:0.1em; margin:10px 0 20px;font-weight: 900; }
+h2 span { background:#fff; padding:0 10px; }
+h3 {
+    color:#9c2132;
+    font-weight: 800;
+  }
+#btn{
+	border:2px solid black!important;
+	background:white;
+    color:black;
+    font-size:21px;
+	text-decoration: none;
+	padding:10px;
+}
+#sec_img{
+    width: 100%;
+    border-radius: 10px;
+}
+.sectiondivider{
+    padding:20px;
+}
+#himages{
+    height: 365px;
+    width: 526px;
+}
+.eheading{
+    float:left;
+}
+.rcontnet{
+    float: right;
+}
+.rcontnet ul{list-style-type: disc;}
+.rcontnet ul li{margin-left: 10px; float: left;}
+.edate{
+   width:190px;
+}
+.evenue{
+    width:auto;
+}
+.footer{
+    height: 42px;
+    background:#d6d9db;
+    text-align: center;
+}
+.footertext{
+
+    text-align: center;
+    font-size: 13px;
+}
+.col-md-12{
+    padding-top:10px !important;
+}
+.eventbtn{
+padding-bottom:10px !important;
+}

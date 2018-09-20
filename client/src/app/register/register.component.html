@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row">
+
+      <div class="col-md-6 offset-md-3" style="margin-top:50px">
+        <div class="air-card p-0-bottom">
+          <form [formGroup]="registerForm"  (ngSubmit)="register()" >
+            <div>
+                <div class="text-center lead lead-md mb30 light-bold hidden-xs" style="margin-bottom:15px">
+                    Register 
+                </div>
+                <div class="col-md-10 offset-md-1">
+                      <div class="input-group" style="margin-bottom:5px">
+                        <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                        
+                        <input type="text" class="form-control" name="username" formControlName="username" placeholder="Enter Username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" autocomplete="off">
+                        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                            <div *ngIf="f.username.errors.required">Username is required</div>
+                        </div>
+                      </div>
+
+                      <div class="m-lg-bottom p-lg-bottom p-sm-top hidden-xs"> </div>
+                </div>
+                <div class="col-md-10 offset-md-1">
+                  <div class="input-group" style="margin-bottom:5px">
+                    <div class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                    <input type="email" class="form-control" name="email" formControlName="email" placeholder="Enter Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" autocomplete="off">
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
+                   
+                  </div>
+
+                  <div class="m-lg-bottom p-lg-bottom p-sm-top hidden-xs"> </div>
+            </div>
+                <div class="col-md-10 offset-md-1">
+                  <div class="input-group" style="margin-bottom:5px">
+                      <div class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></div>
+                    
+                    <input type="password" class="form-control" name="password" formControlName="password" placeholder="Enter Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" autocomplete="off">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <!-- <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div> -->
+                    </div>
+                  </div>   
+                  <div class="input-group" style="margin-bottom:5px">
+                    <div class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></div>
+                    <input type="password" class="form-control" name="password2" formControlName="password2" placeholder="Confirm Password" [ngClass]="{ 'is-invalid': submitted && f.password2.errors }" autocomplete="off">
+                    <div *ngIf="submitted && f.password2.errors" class="invalid-feedback">
+                        <div *ngIf="f.password2.errors.required">Password is required</div>
+                        <div *ngIf="f.password2.errors?.MatchPassword">Password does not Match</div>
+                        <!-- <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div> -->
+                    </div>
+                </div>                      
+
+                  <div class="clearfix">
+                      <div class="pull-left">
+                          <div class="checkbox">
+
+            </div>
+
+                      </div>
+
+                  </div>
+                  <button type="submit" class="btn btn-block  btn-default"  >Register</button>
+            </div>
+            
+            </div>
+            <div  class="text-center">
+
+                <!-- <div class="small text-center m-sm-bottom p-xs-bottom">{{username}}</div> -->
+
+            </div>
+            <!-- <footer class="p-0-top-bottom text-center">
+              <div class="col-md-10 offset-md-1">
+                  <div class="line-heading p-sm-bottom m-sm-top-bottom text-muted">New to Hallwaze?</div>
+                  <a class="btn btn-default m-sm-top m-0-bottom m-0-left-right width-sm hidden-xs"  routerLink="/register" >
+                    Sign up
+                </a>
+              </div>
+            </footer> -->
+
+
+            </form>
+          </div>
+      </div>
+
+  </div>
+</div>

@@ -1,0 +1,365 @@
+<div class="container" *ngIf="showform != true">
+    <div class="row">
+        
+        <div class="col-md-12">
+            <h1 style="margin-top:25px; margin-bottom:20px;">Create Newsletter</h1>
+                <ngb-tabset>
+                        <ngb-tab title="Header">
+                          <ng-template ngbTabContent>
+                                <div class="card">
+                                        <div class="card-body" >
+                                          <h5 class="card-title">Header</h5>
+                                                <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-2 col-form-label">Title:</label>
+                                                        <div class="col-sm-10">
+                                                                <input type="title" [(ngModel)]="title" name="title" class="form-control" id="title" aria-describedby="title" placeholder="Enter Title" [ngClass]="{ 'is-invalid': submitted && !title }">
+                                                        </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-2 col-form-label">Edition:</label>
+                                                        <div class="col-sm-10">
+                                                                <input type="edition" [(ngModel)]="edition"  name="edition" class="form-control" id="edition" aria-describedby="edition" placeholder="Enter Edition" [ngClass]="{ 'is-invalid': submitted && !edition }">
+                                                        </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-2 col-form-label">Logo:</label>
+                                                        <div class="col-sm-10">
+                                                                <input #myLogo  type="file" id="logo" ng2FileSelect  [uploader]="logoUploader" (change)="save($event)" class="imgPlaceholder" >
+
+                                                                <!-- <small id="logo" class="form-text text-muted" *ngIf="submitted && inputLogo.nativeElement.value !== ''">Logo is required.</small> -->
+                                                        </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                        <label for="staticEmail" class="col-sm-2 col-form-label">Header:</label>
+                                                        <div class="col-sm-10">
+                                                                <input #myHeader  type="file" id="background" ng2FileSelect  [uploader]="headerUploader" (change)="uploadImgHeader($event)" class="imgPlaceholder" >
+                                                                <!-- <small id="header" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                                        </div>
+                                                </div>
+
+
+                                        </div>
+                                </div>
+                          </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
+                          <ng-template ngbTabTitle>Industry Watch</ng-template>
+                          <ng-template ngbTabContent>
+                                <div class="card">
+                                        <div class="card-body">
+                                          <h5 class="card-title">Industry Watch</h5>
+                                          <input type="button" class="btn btn-primary" style="margin-bottom:10px;" (click)="openIndustryModal(industry)" value="Add SubSection"/>
+                                          <table class="table table-bordered" *ngIf="industryWatch.length">
+                                                <thead>
+                                                  <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Title</th>
+                                                    <th scope="col">Image</th>
+                                                    <th scope="col">Link</th>
+                                                    <th scope="col">Action</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr *ngFor="let section of industryWatch; let i = index">
+                                                    <th scope="row">{{i+1}}</th>
+                                                    <td>{{section.sec_heading}}</td>
+                                                    <td><img [src]="section.sec_img" style="width:100px;height:100px"/></td>
+                                                    <td><a href="{{section.sec_link}}">Link</a></td>
+                                                    <td><button type="button" class="btn btn-danger" (click)="removeSectionValue(i)">Remove</button></td>
+                                                  </tr>
+                                                </tbody>
+                                           </table>
+                
+                
+                                        </div>
+                                </div>
+                          </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
+                                <ng-template ngbTabTitle>Highlights</ng-template>
+                                <ng-template ngbTabContent>
+                                        <div class="card">
+                                                <div class="card-body">
+                                                  <h5 class="card-title">Highlights</h5>
+                                                  <button type="button" class="btn btn-primary"  style="margin-bottom:10px;" (click)="openHighlightsModal(highlightsModal)" >Add Highlight</button>
+                                                  
+                                                  <table class="table table-bordered" *ngIf="highlights.length">
+                                                        <thead>
+                                                          <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">Image</th>
+                                                            <th scope="col">Action</th>
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                          <tr *ngFor="let highlight of highlights; let i = index">
+                                                            <th scope="row">{{i+1}}</th>
+                                                            <td><img src="{{highlight.hlightImages}}" style="width:100px;height:100px" ></td>
+                                                            <td><button type="button" class="btn btn-danger" (click)="removeHighlightSectionValue(i)">Remove</button></td>
+                                                          </tr>
+                                                        </tbody>
+                                                   </table>
+                        
+                                                </div>
+                                        </div>
+                                </ng-template>
+                              </ngb-tab>
+                              <ngb-tab>
+                                    <ng-template ngbTabTitle>Upcoming Events</ng-template>
+                                    <ng-template ngbTabContent>
+                                            <div class="card">
+                                                    <div class="card-body">
+                                                      <h5 class="card-title">Upcoming Events</h5>
+                                                      <button type="button"  class="btn btn-primary" style="margin-bottom:10px;" (click)="openEventsModal(eventsModal)">Add Event</button>
+                                                      <br/>
+                                                      <table class="table table-bordered"  *ngIf="upcommingEvent.length">
+                                                            <thead>
+                                                              <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">Title</th>
+                                                                <th scope="col">Date</th>
+                                                                <th scope="col">Vanue</th>
+                                                                <th scope="col">Image</th>
+                                                                <th scope="col">Link</th>
+                                                                <th scope="col">Action</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr *ngFor="let event of upcommingEvent; let i = index">
+                                                                <th scope="row">{{i+1}}</th>
+                                                                <th> {{event.eheading}}</th>
+                                                                <th> {{event.efromdate}}</th>
+                                                                <th>  {{event.evenue}}</th>
+                                                                <th> <a href="{{event.elink}}">Link</a> </th>
+                                                                <td><img [src]="event.eimage" style="width:100px;height:100px" ></td>
+                                                                <td><button type="button" class="btn btn-danger" (click)="removeUpcommingEvent(i)">Remove</button></td>
+                                                              </tr>
+                                                            </tbody>
+                                                       </table>
+                            
+                                                    </div>
+                                            </div>
+                                    </ng-template>
+                                  </ngb-tab>
+                                  <ngb-tab>
+                                        <ng-template ngbTabTitle>Footer</ng-template>
+                                        <ng-template ngbTabContent>
+                                                <div class="card">
+                                                        <div class="card-body">
+                                                          <h5 class="card-title">Footer</h5>
+                                                          <div class="form-group row">
+                                                                <label for="staticEmail" class="col-sm-2 col-form-label">Footer:</label>
+                                                                <div class="col-sm-10">
+                                                                        <textarea id="footer"  [(ngModel)]="footerText" name="footerText" class="form-control"></textarea>
+                                                                        <!-- <small id="header" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                                                </div>
+                                                        </div>
+                                                        </div>
+                                                      </div>
+                                        </ng-template>
+                                      </ngb-tab>
+
+                </ngb-tabset>
+        </div>
+ 
+        <div class="col-md-8">
+        </div>
+        <div class="col-md-4">
+
+                <div style="float:right; margin-top:10px; margin-bottom:10px;">
+                          
+                        <input type="button" (click)="clear()"  class="btn btn-warning btn-lg " value="Clear"/>  &nbsp;  
+                        <input type="submit" (click)="onSubmit()"  class="btn btn-info btn-lg " value="Preview"/>
+                </div>
+              
+        </div>
+    </div>
+
+
+
+  
+</div>
+
+<!-- Industry Watch Modal -->
+
+<ng-template #industry let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Industry Watch</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+               
+                    <div class="form-group row">
+                            <label for="heading" class="col-sm-2 col-form-label">Title:</label>
+                            <div class="col-sm-10">
+                                    <input class="form-control" type="text" [(ngModel)]="newSection.sec_heading" name="newSection.sec_heading"  placeholder="Title"  />
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="description" class="col-sm-2 col-form-label">Desctiption:</label>
+                            <div class="col-sm-10">
+                                    <textarea rows="4" cols="50"  class="form-control" [(ngModel)]="newSection.sec_desc"  name="newSection.sec_desc"   placeholder="Description">
+                                        </textarea>
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Image:</label>
+                            <div class="col-sm-10">
+                                    <input  type="file" id="newSection.sec_img"  ng2FileSelect  [uploader]="industryUploader" (change)="industryImgHeader($event)" class="imgPlaceholder" >
+                            </div>
+                    </div>
+                    <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Link:</label>
+                            <div class="col-sm-10">
+                                    <input class="form-control" type="url" [(ngModel)]="newSection.sec_link" name="newSection.sec_link"   placeholder="URL"  />
+                            </div>
+                    </div>
+
+                
+
+        </div>
+        <div class="modal-footer">
+                        
+                                                        <button type="submit" class="btn btn-primary"  (click)="c(newSection)">Add</button>
+                                                        <button type="button" class="btn btn-warning" (click)="d('Cross click')">Cancel</button>
+                                                      </div>
+
+</ng-template>
+
+
+
+      
+<!-- Highlight Modal -->
+<ng-template #highlightsModal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Highlights</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <div class="">
+                        <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Image:</label>
+                                <div class="col-sm-10">
+                                        
+                                        <input  type="file" id="highlight.hlightImages"  ng2FileSelect  [uploader]="highlightsUploader" (change)="highlightsImgHeader($event)" class="imgPlaceholder" >
+                                </div>
+                         </div>
+                         <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-2 col-form-label">Description:</label>
+                                <div class="col-sm-10">
+                                        <textarea rows="4" cols="50"  class="form-control" [(ngModel)]="newhighlight.hlightDesc"  name="newhighlight.hlightDesc" placeholder="Description">
+                                            </textarea>
+                                </div>
+                         </div>
+
+                </div>
+          
+          
+                  <!-- <div class="row">
+                          <div class="col-md-12">
+                             <div class="col-md-10">
+                                <button class="btn btn-primary" type="button" (click)="addHighlightSectionValue()" >Add More</button>
+                            </div>
+                        </div>
+                  </div> -->
+              </div>
+        <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="c(newhighlight)">Add</button>
+                <button type="button" class="btn btn-warning" (click)="d('Cross click')">Cancel</button>
+        </div>
+</ng-template>
+
+<!-- Upcoming Event Modal -->
+<ng-template #eventsModal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Upcoming Events</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+                <div>
+                        <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Title:</label>
+                                <div class="col-sm-9">
+                                        <input class="form-control" type="text" [(ngModel)]="newevent.eheading" name="newevent.eheading" placeholder="Title"  /> 
+                                </div>
+                         </div>
+
+                         <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Event Scheuled Date:</label>
+                                <div class="col-sm-9">
+                                        <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"  [(ngModel)]="model" required></my-date-range-picker>
+                                </div>
+                         </div>
+
+
+                         <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Event Venue:</label>
+                                <div class="col-sm-9">
+                                        <input class="form-control" type="text" [(ngModel)]="newevent.evenue" name="newevent.evenue" placeholder="Event Venue"  />
+                                </div>
+                         </div>
+
+                         <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Link:</label>
+                                <div class="col-sm-9">
+                                        <input class="form-control" type="text" [(ngModel)]="newevent.elink" name="newevent.elink" placeholder="Event Link"  />
+                                </div>
+                         </div>
+
+                         <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Image:</label>
+                                <div class="col-sm-9">
+                                                <input  type="file" id="newevent.eimage"  ng2FileSelect  [uploader]="eventsUploader" (change)="eventsImgHeader($event)" class="imgPlaceholder" >
+                                        <!-- <input  type="file" id="newevent.eimage" (change)="eventImages($event)" class="imgPlaceholder" > -->
+                                </div>
+                         </div>
+
+                         <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-3 col-form-label">Description:</label>
+                                <div class="col-sm-9">
+                                        <textarea rows="4" cols="50"  class="form-control" [(ngModel)]="newevent.edesc"  name="newevent.edesc" placeholder="Description">
+                                            </textarea>
+                                </div>
+                         </div>
+
+                </div>
+        
+
+
+        
+
+        
+                <!-- <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-10">
+                                <button class="btn btn-primary" type="button" (click)="addUpcommingEvent()" >Add More</button>
+                            </div>
+                        </div>
+                </div> -->
+                </div>
+        <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="c(newevent)">Add</button>
+                <button type="button" class="btn btn-warning" (click)="d('Cross click')">Cancel</button>
+        </div>
+</ng-template>
+
+
+
+
+<div *ngIf="showform">
+        <div class="container">
+                        <div style="margin-bottom:15px; margin-top:10px">
+                                        <button class="btn btn-primary" type="button" (click)="saveNewsletter()" >Save</button>&nbsp;
+                                        <button class="btn btn-warning" type="button" (click)="clear()" >Cancel</button>
+                    
+                                </div>
+        </div>
+
+    <app-showtemplate [data]="finalObj"></app-showtemplate>
+</div>
