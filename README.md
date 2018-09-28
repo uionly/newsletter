@@ -9,4 +9,5 @@ Install the dependecies and devDependencies and start the server.
 ```sh
 $ cd newsletter
 $ npm install
+$ npm start
 ```
